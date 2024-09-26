@@ -5,7 +5,8 @@ USER root
 ENV DEBIAN_FRONTEND="noninteractive" TZ="Etc/UTC"
 
 # Install Octave
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get install software-properties-common \
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
+    && apt-get install software-properties-common \
     && add-apt-repository ppa:ubuntuhandbook1/octave -y \
     && apt-get update \
     && apt-get install -y \
