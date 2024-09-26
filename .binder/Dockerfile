@@ -6,11 +6,10 @@ ENV DEBIAN_FRONTEND="noninteractive" TZ="Etc/UTC"
 
 # Install Octave
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
-    && apt-get install software-properties-common \
+    && apt-get install -y software-properties-common \
     && add-apt-repository ppa:ubuntuhandbook1/octave -y \
     && apt-get update \
-    && apt-get install -y \
-    octave octave-dev octave-doc
+    && apt-get install -y octave octave-dev octave-doc
 
 # Switch to notebook user
 USER $NB_USER
