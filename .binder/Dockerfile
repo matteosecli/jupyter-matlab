@@ -9,7 +9,11 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
     && apt-get install -y software-properties-common \
     && add-apt-repository ppa:ubuntuhandbook1/octave -y \
     && apt-get update \
-    && apt-get install -y octave octave-dev octave-doc
+    && apt-get install -y \
+    octave octave-dev octave-doc \
+    libgl1-mesa-dev \
+    texlive texlive-latex-extra \
+    dvipng dvisvgm
 
 # Switch to notebook user
 USER $NB_USER
