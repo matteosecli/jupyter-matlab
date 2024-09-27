@@ -2,7 +2,7 @@ FROM ghcr.io/mathworks-ref-arch/matlab-integration-for-jupyter/jupyter-matlab-no
 
 # Switch to root user
 USER root
-ENV DEBIAN_FRONTEND="noninteractive" TZ="Etc/UTC"
+ENV DEBIAN_FRONTEND="noninteractive" TZ="UTC"
 
 # Install Octave
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
@@ -21,3 +21,13 @@ WORKDIR /home/${NB_USER}
 
 # Install nbgitpuller and octave_kernel
 RUN python -m pip install nbgitpuller octave_kernel
+
+# Install Octave extensions
+RUN octave-cli --eval 'pkg install -forge tablicious'
+
+# Set entrypoint
+COPY ./start /
+ENTRYPOINT ["/start"]
+
+# Switch to main octave executable ('octave-cli' doesn't have 'qt')
+ENV OCTAVE_EXECUTABLE=octave
