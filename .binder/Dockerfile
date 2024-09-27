@@ -15,6 +15,12 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
     texlive texlive-latex-extra \
     dvipng dvisvgm
 
+# Set entrypoint
+RUN echo '#!/usr/bin/env bash' > /start && \
+    echo 'xvfb-run "$@"' >> /start && \
+    chmod +x /start
+ENTRYPOINT ["/start"]
+
 # Switch to notebook user
 USER $NB_USER
 WORKDIR /home/${NB_USER}
@@ -24,10 +30,6 @@ RUN python -m pip install nbgitpuller octave_kernel
 
 # Install Octave extensions
 RUN octave-cli --eval 'pkg install -forge tablicious'
-
-# Set entrypoint
-COPY ./start /
-ENTRYPOINT ["/start"]
 
 # Switch to main octave executable ('octave-cli' doesn't have 'qt')
 ENV OCTAVE_EXECUTABLE=octave
