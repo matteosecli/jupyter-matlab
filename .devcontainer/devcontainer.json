@@ -1,22 +1,30 @@
 // For format details, see https://aka.ms/vscode-remote/devcontainer.json
 {
 	"name": "jupyter-matlab",
+	//"overrideCommand": false,
 	"build": {
 		"dockerfile": "../.binder/Dockerfile",
 		"context": ".."
 	},
 
-	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"ms-python.python",
-		"julialang.language-julia",
-		"MathWorks.language-matlab",
-		"eamodio.gitlens",
-		"ms-toolsai.jupyter-renderers",
-		"h5web.vscode-h5web",
-		"toasty-technologies.octave",
-		"ms-toolsai.jupyter"
-	]
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {},
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"ms-python.python",
+				"julialang.language-julia",
+				"MathWorks.language-matlab",
+				"eamodio.gitlens",
+				"ms-toolsai.jupyter-renderers",
+				"h5web.vscode-h5web",
+				"toasty-technologies.octave",
+				"ms-toolsai.jupyter"
+			]
+		}
+	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
