@@ -1,1 +1,1 @@
-FROM quay.io/matteosecli/jupyter-matlab:with-devcontainer
+FROM quay.io/matteosecli/jupyter-matlab:main
