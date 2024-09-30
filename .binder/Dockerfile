@@ -15,11 +15,10 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
     texlive texlive-latex-extra \
     dvipng dvisvgm
 
-# Set entrypoint
-RUN echo '#!/usr/bin/env bash' > /start && \
-    echo 'xvfb-run "$@"' >> /start && \
-    chmod +x /start
-ENTRYPOINT ["/start"]
+# Create xvfb-run-wrapped octave
+RUN echo '#!/usr/bin/env bash' > /usr/bin/octave-x && \
+    echo 'xvfb-run -a /usr/bin/octave "$@"' >> /usr/bin/octave-x && \
+    chmod +x /usr/bin/octave-x
 
 # Switch to notebook user
 USER $NB_USER
@@ -32,7 +31,7 @@ RUN python -m pip install nbgitpuller octave_kernel
 RUN octave-cli --eval 'pkg install -forge tablicious'
 
 # Switch to main octave executable ('octave-cli' doesn't have 'qt')
-ENV OCTAVE_EXECUTABLE=octave
+ENV OCTAVE_EXECUTABLE=octave-x
 
 # Install Julia
 RUN wget -q -O - https://install.julialang.org | sh -s -- -y
