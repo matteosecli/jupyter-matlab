@@ -1,11 +1,8 @@
 // For format details, see https://aka.ms/vscode-remote/devcontainer.json
 {
 	"name": "jupyter-matlab",
-	//"overrideCommand": false,
-	"build": {
-		"dockerfile": "../.binder/Dockerfile",
-		"context": ".."
-	},
+	
+	"image": "quay.io/matteosecli/jupyter-matlab:with-devcontainer",
 
 	"customizations": {
 		// Configure properties specific to VS Code.
