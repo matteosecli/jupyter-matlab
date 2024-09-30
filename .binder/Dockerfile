@@ -33,3 +33,9 @@ RUN octave-cli --eval 'pkg install -forge tablicious'
 
 # Switch to main octave executable ('octave-cli' doesn't have 'qt')
 ENV OCTAVE_EXECUTABLE=octave
+
+# Install Julia
+RUN wget -q -O - https://install.julialang.org | sh -s -- -y
+
+# Installa Julia kernel
+RUN source /home/${NB_USER}/.profile && julia -e 'using Pkg; Pkg.add(["IJulia","LinearAlgebra","SparseArrays","Arpack","DifferentialEquations","Plots","KrylovKit","BenchmarkTools"]); using IJulia'
