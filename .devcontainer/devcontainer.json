@@ -9,11 +9,13 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-python.python",
-    "julialang.language-julia",
-    "MathWorks.language-matlab",
-    "eamodio.gitlens",
-    "ms-toolsai.jupyter-renderers",
-    "h5web.vscode-h5web"
+		"julialang.language-julia",
+		"MathWorks.language-matlab",
+		"eamodio.gitlens",
+		"ms-toolsai.jupyter-renderers",
+		"h5web.vscode-h5web",
+		"toasty-technologies.octave",
+		"ms-toolsai.jupyter"
 	]
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
