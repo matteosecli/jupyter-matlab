@@ -40,4 +40,4 @@ ENV JULIA_CPU_TARGET generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base
 RUN wget -q -O - https://install.julialang.org | sh -s -- -y
 
 # Installa Julia kernel
-RUN source /home/${NB_USER}/.profile && julia -e 'using Pkg; Pkg.add(["IJulia","LinearAlgebra","SparseArrays","Arpack","DifferentialEquations","Plots","KrylovKit","BenchmarkTools"]); using IJulia'
+RUN source /home/${NB_USER}/.profile && julia -e 'using Pkg; Pkg.add(["IJulia","LinearAlgebra","SparseArrays","Arpack","DifferentialEquations","Plots","KrylovKit","BenchmarkTools","CairoMakie","QuantumToolbox"]); using IJulia'
