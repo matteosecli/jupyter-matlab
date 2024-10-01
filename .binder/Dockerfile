@@ -1,4 +1,4 @@
-FROM ghcr.io/mathworks-ref-arch/matlab-integration-for-jupyter/jupyter-matlab-notebook:r2024a-ubuntu22.04
+FROM --platform=linux/amd64 ghcr.io/mathworks-ref-arch/matlab-integration-for-jupyter/jupyter-matlab-notebook:r2024a-ubuntu22.04
 
 # Switch to root user
 USER root
@@ -32,6 +32,9 @@ RUN octave-cli --eval 'pkg install -forge tablicious'
 
 # Switch to main octave executable ('octave-cli' doesn't have 'qt')
 ENV OCTAVE_EXECUTABLE=octave-x
+
+# Set a generic x86_64 CPU target for Julia, see https://github.com/docker-library/julia/issues/79
+ENV JULIA_CPU_TARGET generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)
 
 # Install Julia
 RUN wget -q -O - https://install.julialang.org | sh -s -- -y
